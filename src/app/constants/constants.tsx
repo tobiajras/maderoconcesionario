@@ -1,28 +1,28 @@
 export const company = {
-  dark: false,
+  dark: true,
   darkmode: true,
   shortAdress: true,
-  favicon: true,
+  favicon: false,
   price: true,
   objectCover: '50%',
-  id: 'sepautos',
-  name: 'SEP AUTOS',
-  adress: 'Av. Francisco Beiró 4555',
-  city: 'Villa Devoto',
-  email: 'info@sepautos.com.ar',
-  instagram: 'sepautos',
-  facebook: 'https://www.facebook.com/SEPAUTOS/',
-  whatsapp: ['1130107242'],
-  googlemapsLink: 'https://maps.app.goo.gl/coiAKLAmfhrQo5m38',
+  id: 'automotorestroncoso',
+  name: 'Automotores Troncoso',
+  adress: 'Av. Mitre 4369',
+  city: 'Avellaneda',
+  email: 'automotores.troncoso@hotmail.com',
+  instagram: 'automotores.troncoso',
+  facebook: 'https://www.facebook.com/profile.php?id=100049211336927',
+  whatsapp: ['1134362307', '1138806681'],
+  googlemapsLink: 'https://maps.app.goo.gl/g5XZNAed178bmUKH9',
   googlemaps:
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.8570183907227!2d-58.51493920000001!3d-34.6077769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb7804b4b6519%3A0xe462e26fc44aca18!2sSEP%20Autos!5e0!3m2!1sen!2sar!4v1754451477031!5m2!1sen!2sar',
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13122.293707910105!2d-58.33541582501924!3d-34.690714071550374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a332fb1b1fd199%3A0x54dbf347c4da1c93!2sAutomotores%20Troncoso!5e0!3m2!1sen!2sar!4v1754598989272!5m2!1sen!2sar',
   openDays: [
-    { day: 'Lunes', hours: ['08:00 a 18:00hs'] },
-    { day: 'Martes', hours: ['08:00 a 18:00hs'] },
-    { day: 'Miércoles', hours: ['08:00 a 18:00hs'] },
-    { day: 'Jueves', hours: ['08:00 a 18:00hs'] },
-    { day: 'Viernes', hours: ['08:00 a 18:00hs'] },
-    { day: 'Sábado', hours: ['09:00 a 17:00hs'] },
+    { day: 'Lunes', hours: ['09:30 a 19:00hs'] },
+    { day: 'Martes', hours: ['09:30 a 19:00hs'] },
+    { day: 'Miércoles', hours: ['09:30 a 19:00hs'] },
+    { day: 'Jueves', hours: ['09:30 a 19:00hs'] },
+    { day: 'Viernes', hours: ['09:30 a 19:00hs'] },
+    { day: 'Sábado', hours: ['09:30 a 13:00hs'] },
     // { day: 'Domingo', hours: ['09:00 a 13:00hs'] },
   ],
   footer:
@@ -33,8 +33,8 @@ export const API_BASE_URL = 'https://dealership.agenciagrvity.com';
 export const TENANT = 'accotto-automotores';
 
 export const metadataCompany = {
-  metadataBase: 'https://sepautos.vercel.app/',
-  title: 'SEP AUTOS - Compra y Venta de Autos',
+  metadataBase: 'https://automotorestroncoso.vercel.app/',
+  title: 'Automotores Troncoso - Compra y Venta de Autos',
   description:
     'Compra y Venta de Autos: Vehículos seleccionados, atención personalizada.',
 };

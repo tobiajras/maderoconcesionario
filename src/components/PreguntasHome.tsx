@@ -30,7 +30,7 @@ const PreguntasHome = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true, margin: '0px 0px -100px 0px' }}
-            className='text-2xl md:text-3xl lg:text-4xl font-extrabold text-color-title mb-2'
+            className='text-2xl md:text-3xl lg:text-4xl font-extrabold text-color-title-light mb-2'
           >
             Preguntas Frecuentes
           </motion.h2>
@@ -39,7 +39,7 @@ const PreguntasHome = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true, margin: '0px 0px -100px 0px' }}
-            className='text-color-text max-w-2xl mx-auto md:text-lg font-medium'
+            className='text-color-text-light max-w-2xl mx-auto md:text-lg font-medium'
           >
             Resolvemos todas tus dudas sobre nuestros servicios y procesos
           </motion.p>
@@ -87,16 +87,16 @@ const PreguntasHome = () => {
                         className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300
                         ${
                           activeAnswer === pregunta.id
-                            ? `bg-color-primary text-white shadow-lg ${
+                            ? `bg-color-primary shadow-lg ${
                                 company.dark
-                                  ? 'bg-color-primary-dark'
-                                  : 'bg-color-primary'
+                                  ? 'bg-color-primary-dark text-color-title-light'
+                                  : 'bg-color-primary text-color-title'
                               }`
                             : `${
                                 company.dark
-                                  ? 'group-hover:bg-color-primary-dark'
-                                  : 'group-hover:bg-color-primary'
-                              } bg-gray-100 text-gray-600 group-hover:text-color-title-light`
+                                  ? 'group-hover:bg-color-primary-dark group-hover:text-color-title-light'
+                                  : 'group-hover:bg-color-primary group-hover:text-color-title'
+                              } bg-gray-100 text-color-title`
                         }`}
                       >
                         <motion.div

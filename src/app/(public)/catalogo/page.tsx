@@ -82,8 +82,6 @@ const CatalogoPage = () => {
   const [todasLasMarcas, setTodasLasMarcas] = useState<string[]>([]);
   const [categorias, setCategorias] = useState<Category[]>([]);
 
-  console.log(cars);
-
   // Función para obtener todas las marcas disponibles
   const fetchMarcas = () => {
     try {
@@ -106,7 +104,7 @@ const CatalogoPage = () => {
       );
       const categoriasProcesadas = categoriasUnicas.map((cat) => ({
         id: cat.toLowerCase(),
-        name: cat,
+        name: cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase(),
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       }));
@@ -124,11 +122,6 @@ const CatalogoPage = () => {
     setLoading(true);
     try {
       let filteredCars = [...data.cars];
-
-      // Filtrar vehículos que no tienen imágenes
-      filteredCars = filteredCars.filter(
-        (car) => car.images && car.images.length > 0
-      );
 
       // Aplicar filtros
       if (filters?.search) {
@@ -184,7 +177,9 @@ const CatalogoPage = () => {
           updatedAt: car.updatedAt,
           Category: {
             id: car.Category.id,
-            name: car.Category.name,
+            name:
+              car.Category.name.charAt(0).toUpperCase() +
+              car.Category.name.slice(1).toLowerCase(),
             createdAt: car.createdAt,
             updatedAt: car.updatedAt,
           },
@@ -317,7 +312,7 @@ const CatalogoPage = () => {
         <div className='w-full flex justify-center mt-8 md:mt-10'>
           <div className='max-w-md sm:max-w-2xl lg:max-w-7xl w-full mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-0'>
             {/* Contenedor principal con fondo oscuro y sombra */}
-            <div className='bg-gradient-to-b from-black to-neutral-900 border border-neutral-800 rounded-lg shadow-[0_8px_30px_-15px_rgba(0,0,0,0.7)] p-5'>
+            <div className='bg-color-bg-secondary border border-neutral-600 rounded-lg shadow-[0_8px_30px_-15px_rgba(0,0,0,0.7)] p-5'>
               {/* Título de la sección de filtros */}
               <div className='mb-5 flex items-center justify-between'>
                 <div className='flex items-center'>
@@ -577,7 +572,7 @@ const CatalogoPage = () => {
                         setSearchValue('');
                         router.push('/catalogo');
                       }}
-                      className='flex items-center gap-2 px-3 py-2 rounded-full bg-color-primary hover:bg-color-primary-dark text-white transition-colors'
+                      className='flex items-center gap-2 px-3 py-2 rounded-full bg-color-primary hover:bg-color-primary/80 text-black transition-colors'
                     >
                       <span>Limpiar filtros</span>
                       <CloseIcon className='w-4 h-4 stroke-[2]' />
@@ -688,71 +683,82 @@ const CatalogoPage = () => {
                           </div>
 
                           {/* Información del vehículo */}
-                          <div className='py-3 relative group'>
-                            <h3
-                              className={`${
-                                company.dark
-                                  ? 'group-hover:text-color-primary'
-                                  : 'group-hover:text-color-primary-dark'
-                              } text-color-title text-lg md:text-xl font-bold tracking-tight truncate md:mb-1 transition-colors duration-300`}
-                            >
-                              {car.model}
-                            </h3>
-
-                            <div
-                              className={`${
-                                company.price ? '' : 'hidden'
-                              } text-color-primary text-lg md:text-xl font-bold tracking-tight truncate md:mb-1 transition-colors duration-300`}
-                            >
-                              {car.price.moneda === 'ARS' ? '$' : 'US$'}
-                              {car.price.valor.toLocaleString('es-ES')}
-                            </div>
-
-                            {/* Diseño minimalista con separadores tipo | */}
-                            <div className='flex flex-wrap items-center text-color-text font-medium'>
-                              <span className=''>{car.brand}</span>
-                              <span
+                          <div className='relative group'>
+                            {/* Gradiente base */}
+                            <div className='absolute inset-0 bg-gradient-to-b from-transparent to-color-primary/20 rounded-lg'></div>
+                            {/* Gradiente hover */}
+                            <div className='absolute inset-0 bg-gradient-to-b from-transparent to-color-primary/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out'></div>
+                            {/* Contenido */}
+                            <div className='relative z-10 p-4'>
+                              <h3
                                 className={`${
                                   company.dark
-                                    ? 'text-color-primary'
-                                    : 'text-color-primary'
-                                } mx-2`}
+                                    ? 'group-hover:text-color-primary'
+                                    : 'group-hover:text-color-primary'
+                                } text-color-title-light text-lg md:text-xl font-bold tracking-tight truncate md:mb-1 transition-colors duration-300`}
                               >
-                                |
-                              </span>
-                              <span>{car.year}</span>
-                            </div>
+                                {car.model}
+                              </h3>
 
-                            {/* Precio o etiqueta destacada */}
-                            <div className='flex justify-between items-center text-color-text mt-0.5'>
-                              {car.mileage === 0 ? (
-                                <span className='text-sm font-semibold uppercase tracking-wider text-color-primary'>
-                                  Nuevo{' '}
-                                  <span className='text-color-primary'>•</span>{' '}
-                                  {car.mileage.toLocaleString('es-ES')} km
-                                </span>
-                              ) : (
-                                <span className='text-sm text-color-text font-medium uppercase tracking-wider'>
-                                  Usado{' '}
-                                  <span className='text-color-primary'>•</span>{' '}
-                                  {car.mileage.toLocaleString('es-ES')} km
-                                </span>
-                              )}
-                            </div>
-
-                            <div className='md:mt-1'>
-                              <span
+                              <div
                                 className={`${
-                                  company.dark
-                                    ? 'text-color-primary group-hover:text-color-primary-dark'
-                                    : 'text-color-primary group-hover:text-color-primary-dark'
-                                } inline-flex items-center  transition-colors font-semibold`}
+                                  company.price ? '' : 'hidden'
+                                } text-color-primary text-lg md:text-xl font-bold tracking-tight truncate md:mb-1 transition-colors duration-300`}
                               >
-                                Ver más
-                                <span className='inline-block transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300 ml-1'>
-                                  →
+                                {car.price.moneda === 'ARS' ? '$' : 'US$'}
+                                {car.price.valor.toLocaleString('es-ES')}
+                              </div>
+
+                              {/* Diseño minimalista con separadores tipo | */}
+                              <div className='flex flex-wrap items-center text-color-text-light font-medium'>
+                                <span className=''>{car.brand}</span>
+                                <span
+                                  className={`${
+                                    company.dark
+                                      ? 'text-color-primary'
+                                      : 'text-color-primary'
+                                  } mx-2`}
+                                >
+                                  |
                                 </span>
-                              </span>
+                                <span>{car.year}</span>
+                              </div>
+
+                              {/* Precio o etiqueta destacada */}
+                              <div className='flex justify-between items-center text-color-text-light mt-0.5'>
+                                {car.mileage === 0 ? (
+                                  <span className='text-sm font-semibold uppercase tracking-wider text-color-primary'>
+                                    Nuevo{' '}
+                                    <span className='text-color-primary'>
+                                      •
+                                    </span>{' '}
+                                    {car.mileage.toLocaleString('es-ES')} km
+                                  </span>
+                                ) : (
+                                  <span className='text-sm text-color-text-light font-medium uppercase tracking-wider'>
+                                    Usado{' '}
+                                    <span className='text-color-primary'>
+                                      •
+                                    </span>{' '}
+                                    {car.mileage.toLocaleString('es-ES')} km
+                                  </span>
+                                )}
+                              </div>
+
+                              <div className='md:mt-1'>
+                                <span
+                                  className={`${
+                                    company.dark
+                                      ? 'text-color-primary-light'
+                                      : 'text-color-primary-light'
+                                  } inline-flex items-center  transition-colors font-semibold`}
+                                >
+                                  Ver más
+                                  <span className='inline-block transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300 ml-1'>
+                                    →
+                                  </span>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -770,21 +776,19 @@ const CatalogoPage = () => {
                       handlePageChange(Math.max(1, currentPage - 1))
                     }
                     disabled={currentPage === 1}
-                    className={`px-4 py-2 rounded ${
+                    className={`px-4 py-2 rounded relative overflow-hidden transition-all duration-300 ease-in-out ${
                       currentPage === 1
-                        ? 'bg-color-primary/50 text-color-title-light cursor-not-allowed'
-                        : 'bg-color-primary text-color-title-light hover:bg-color-primary-dark hover:text-color-title'
-                    } transition-colors`}
+                        ? 'bg-color-primary/50 text-color-title-light cursor-not-allowed opacity-50'
+                        : 'bg-color-primary text-color-title-light hover:bg-color-primary-dark'
+                    }`}
                   >
                     <ArrowIcon
-                      className={`w-4 h-4 rotate-180 ${
-                        company.dark
-                          ? 'text-color-title-light'
-                          : 'text-color-title-light'
+                      className={`w-4 h-4 rotate-180 text-color-title-light transition-opacity duration-300 relative z-10 ${
+                        currentPage === 1 ? 'opacity-50' : 'opacity-100'
                       }`}
                     />
                   </button>
-                  <span className='text-color-text'>
+                  <span className='text-color-text-light'>
                     Página {currentPage} de {totalPages}
                   </span>
                   <button
@@ -792,17 +796,17 @@ const CatalogoPage = () => {
                       handlePageChange(Math.min(totalPages, currentPage + 1))
                     }
                     disabled={currentPage === totalPages}
-                    className={`px-4 py-2 rounded ${
+                    className={`px-4 py-2 rounded relative overflow-hidden transition-all duration-300 ease-in-out ${
                       currentPage === totalPages
-                        ? 'bg-color-primary/50 text-color-title-light cursor-not-allowed'
-                        : 'bg-color-primary text-color-title-light hover:bg-color-primary-dark hover:text-color-title'
-                    } transition-colors`}
+                        ? 'bg-color-primary/50 text-color-title-light cursor-not-allowed opacity-50'
+                        : 'bg-color-primary text-color-title-light hover:bg-color-primary-dark'
+                    }`}
                   >
                     <ArrowIcon
-                      className={`w-4 h-4 ${
-                        company.dark
-                          ? 'text-color-title-light'
-                          : 'text-color-title-light'
+                      className={`w-4 h-4 text-color-title-light transition-opacity duration-300 relative z-10 ${
+                        currentPage === totalPages
+                          ? 'opacity-50'
+                          : 'opacity-100'
                       }`}
                     />
                   </button>
@@ -811,11 +815,11 @@ const CatalogoPage = () => {
             </>
           ) : (
             <div className='flex flex-col items-center min-h-[600px] my-8 md:my-16'>
-              <div className='col-span-2 md:col-span-3 lg:col-span-4 text-center text-lg text-color-text'>
+              <div className='col-span-2 md:col-span-3 lg:col-span-4 text-center text-lg text-color-text-light'>
                 {searchFilter ? (
                   <>
                     No se encontraron resultados para la búsqueda{' '}
-                    <span className='text-color-title font-semibold'>
+                    <span className='text-color-title-light font-semibold'>
                       &quot;{searchFilter}&quot;
                     </span>
                     {(marcaFilter || categoriaFilter) &&
@@ -825,19 +829,19 @@ const CatalogoPage = () => {
                 ) : marcaFilter && categoriaFilter ? (
                   <>
                     No hay vehículos de la marca{' '}
-                    <span className='text-color-title font-semibold'>
+                    <span className='text-color-title-light font-semibold'>
                       {marcaFilter}
                     </span>{' '}
                     en la categoría{' '}
-                    <span className='text-color-title font-semibold'>
-                      {categoriaFilter}
+                    <span className='text-color-title-light font-semibold'>
+                      {capitalizeFirstLetter(categoriaFilter)}
                     </span>
                     .
                   </>
                 ) : marcaFilter ? (
                   <>
                     No hay vehículos disponibles de la marca{' '}
-                    <span className='text-color-title font-semibold'>
+                    <span className='text-color-title-light font-semibold'>
                       {marcaFilter}
                     </span>
                     .
@@ -845,7 +849,7 @@ const CatalogoPage = () => {
                 ) : categoriaFilter ? (
                   <>
                     No hay vehículos disponibles en la categoría{' '}
-                    <span className='text-color-title font-semibold'>
+                    <span className='text-color-title-light font-semibold'>
                       {capitalizeFirstLetter(categoriaFilter)}
                     </span>
                     .
@@ -855,7 +859,7 @@ const CatalogoPage = () => {
                 )}
               </div>
               <Link
-                className='mt-5 border-2 border-transparent bg-color-primary hover:bg-color-primary-dark transition-colors px-4 md:px-6 py-3 text-color-title-light rounded'
+                className='mt-5 border-2 border-transparent bg-color-primary hover:bg-color-primary/80 transition-colors px-4 md:px-6 py-3 text-color-title font-semibold rounded'
                 href='/catalogo'
                 onClick={(e) => {
                   e.preventDefault();
