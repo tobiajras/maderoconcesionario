@@ -5,26 +5,17 @@ export const company = {
   favicon: false,
   price: true,
   objectCover: '50%',
-  id: 'automotorestroncoso',
-  name: 'Automotores Troncoso',
-  adress: 'Av. Mitre 4369',
-  city: 'Avellaneda',
-  email: 'automotores.troncoso@hotmail.com',
-  instagram: 'automotores.troncoso',
-  facebook: 'https://www.facebook.com/profile.php?id=100049211336927',
-  whatsapp: ['1134362307', '1138806681'],
-  googlemapsLink: 'https://maps.app.goo.gl/g5XZNAed178bmUKH9',
-  googlemaps:
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13122.293707910105!2d-58.33541582501924!3d-34.690714071550374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a332fb1b1fd199%3A0x54dbf347c4da1c93!2sAutomotores%20Troncoso!5e0!3m2!1sen!2sar!4v1754598989272!5m2!1sen!2sar',
-  openDays: [
-    { day: 'Lunes', hours: ['09:30 a 19:00hs'] },
-    { day: 'Martes', hours: ['09:30 a 19:00hs'] },
-    { day: 'Miércoles', hours: ['09:30 a 19:00hs'] },
-    { day: 'Jueves', hours: ['09:30 a 19:00hs'] },
-    { day: 'Viernes', hours: ['09:30 a 19:00hs'] },
-    { day: 'Sábado', hours: ['09:30 a 13:00hs'] },
-    // { day: 'Domingo', hours: ['09:00 a 13:00hs'] },
-  ],
+  id: 'automotoresbaltieri',
+  name: 'Automotores Baltieri',
+  adress: null,
+  city: null,
+  email: 'baltieri_c@hotmail.com',
+  instagram: 'baltieri.automotores',
+  facebook: 'https://www.facebook.com/baltieriautomotores/',
+  whatsapp: ['1132863960', '1560276316', '1120301060'],
+  googlemapsLink: null,
+  googlemaps: null,
+  openDays: null,
   footer:
     'Compra y Venta de Autos: Vehículos seleccionados, atención personalizada.',
 };
@@ -33,11 +24,47 @@ export const API_BASE_URL = 'https://dealership.agenciagrvity.com';
 export const TENANT = 'accotto-automotores';
 
 export const metadataCompany = {
-  metadataBase: 'https://automotorestroncoso.vercel.app/',
-  title: 'Automotores Troncoso - Compra y Venta de Autos',
+  metadataBase: 'https://automotoresbaltieri.vercel.app/',
+  title: 'Automotores Baltieri - Compra y Venta de Autos',
   description:
     'Compra y Venta de Autos: Vehículos seleccionados, atención personalizada.',
 };
+
+export const sedes = [
+  {
+    id: 1,
+    title: 'Baltieri Dardo Rocha 1132',
+    adress: 'Av. Dardo Rocha 1132',
+    city: 'Bernal',
+    tel: null,
+    whatsapp: '1132863960',
+    schedule: ['Lunes a Viernes 9 a 13 y 14 a 18:30hs', 'Sábados 9 a 14hs'],
+    appointment: 'https://maps.app.goo.gl/UvpZRZEjNSCnG7yK9',
+    image: 'sede-1.webp',
+  },
+  {
+    id: 2,
+    title: 'Baltieri Dardo Rocha 1636',
+    adress: 'Av. Dardo Rocha 1636',
+    city: 'Bernal',
+    tel: null,
+    whatsapp: '1560276316',
+    schedule: ['Lunes a Viernes 9 a 13 y 14 a 18:30hs', 'Sábados 9 a 14hs'],
+    appointment: 'https://maps.app.goo.gl/1eAR8pKbzCggjr9u9',
+    image: 'sede-2.webp',
+  },
+  {
+    id: 3,
+    title: 'Baltieri Dardo Rocha 1636',
+    adress: 'Av. Dardo Rocha 669',
+    city: 'Berazategui',
+    tel: null,
+    whatsapp: '1120301060',
+    schedule: ['Lunes a Viernes 9 a 13 y 14 a 18:30hs', 'Sábados 9 a 14hs'],
+    appointment: 'https://maps.app.goo.gl/5BpMjthUByE4p9FX9',
+    image: 'sede-3.webp',
+  },
+];
 
 // Cambie el archivo data.json, necesito que actualices la informacion de catalogo.json. Las images tomalas de images de data.json, la descripcion tomala de caption de data.json, pero necesito que el texto este parseado, que no este todo junto sin espacios y saltos de linea. En name pone la marca y el modelo del vehiculo en title case, marca, marcaId todo esto acorde a la informacion de caption. Si en caption no se dice kilometraje o precio pone 999999, categoria estimala para el vehiculo (categorias tipicas de vehiculos en argentina. como utilitario, deportivo, suv, hatchback, etc). Transmision, motor, combustible y puertas estimalas acorde al vehiculo. La cantidad de vehiculos tiene que ser la de data.json, si en catalogo.json hay otros vehiculos removelos, los vehiclos de catalogo json tienen que ser los mismos que en data.json. No hagas un script, simplemente actualizalo con ia.
 
