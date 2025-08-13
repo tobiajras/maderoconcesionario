@@ -23,7 +23,7 @@ const ContactoPage = () => {
               transition={{ duration: 0.5 }}
               className='text-2xl md:text-3xl lg:text-4xl font-extrabold bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent mb-2'
             >
-              Visitanos
+              Vení a <span className='text-color-primary'>{company.name}</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
